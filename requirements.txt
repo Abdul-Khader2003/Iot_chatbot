@@ -1,0 +1,13 @@
+clickhouse-driver
+clickhouse-connect
+requests
+fastapi
+uvicorn
+python-dotenv
+openai
+tensorflow == 2.18.0
+pandas
+scikit-learn
+numpy
+pydantic
+python-dateutil
