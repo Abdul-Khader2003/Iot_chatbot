@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import  timedelta
 
 from openai import OpenAI
 import os
@@ -35,6 +35,8 @@ You are an AI assistant that converts natural language questions into either:
    The timestamps must be in ISO 8601 format (YYYY-MM-DDTHH:MM:SS), in 24-hour time.
 
    IMPORTANT: If the question mentions a specific **future date or date range**, use that exact date or date range in the command.
+   - If the user asks for a **specific time only** (e.g., "at 05:00", "at 3pm"), assume a 1-hour window starting from that time (e.g., 05:00 to 06:00) **unless the user specifies otherwise**.
+
    🕒 Today's date is: {today_str}
    🕒 Current time is: {now_iso}
    
@@ -45,6 +47,12 @@ You are an AI assistant that converts natural language questions into either:
 
    Q: "Predict temperature from 2025-08-06 10:00 to 2025-08-07 10:00"
    A: PREDICT_NEXT_INTERVAL start=2025-08-06T10:00:00 end=2025-08-07T10:00:00
+   
+   Q: "Predict temperature on 5:00pm" 
+   (if the values are not present it needs to give the next nearest predicted value to it)
+   A: PREDICT_NEXT_INTERVAL start=2025-08-04 17:17:59 end=2025-08-04 17:17:59
+   
+   
 
 Return ONLY the SQL query or the exact command string.
 """

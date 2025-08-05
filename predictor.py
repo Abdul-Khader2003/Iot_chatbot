@@ -79,5 +79,4 @@ def predict_next_24_hours(filter_tags: list = None, start: pd.Timestamp = None, 
     if start and end:
         mask = (forecast_df['timestamp'] >= start) & (forecast_df['timestamp'] <= end)
         forecast_df = forecast_df.loc[mask]
-
     return forecast_df.to_dict(orient="records")
